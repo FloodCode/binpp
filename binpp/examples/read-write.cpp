@@ -33,8 +33,8 @@ int main()
 	// Output:
 	// 
 	// result[0]: 228
-	// result[1] : 57
-	// result[2] : 66
+	// result[1] : 1337
+	// result[2] : 322
 	// result[3] : 123
 	// 
 
