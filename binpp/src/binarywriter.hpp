@@ -31,11 +31,11 @@ namespace binpp
 			else
 			{
 				size_t parts = typeSize / BINPP_BYTE_SIZE;
-
-				for (size_t i = parts; i > 0; --i)
+				for (size_t part = parts; part > 1; --part)
 				{
-					Append(static_cast<byte>(data >> ((i - 1) * 8)));
+					Append(static_cast<byte>(data >> ((part * 8) - 1)));
 				}
+				Append(static_cast<byte>(data));
 			}
 		}
 
