@@ -13,14 +13,24 @@ BinaryReader reader;
 reader.Open("somefile.bin");
 ```
 
-## void Read(size_t offset, T *outVar)
-Writes binary data with `offset` to `*outVar` variable.
+## void Read(offset, outVar)
+Writes binary data to variable by pointer with `offset`.
 
 Usage:
 ```cpp
 BinaryReader reader("somefile.bin");
 long long int someLong;
 reader.Read(0, &someLong);
+```
+
+## void Read(offset, outArray, count);
+Writes binary data to array with `offset`.
+
+Usage:
+```cpp
+BinaryReader reader("somefile.bin");
+short int arr[64];
+reader.Read(0, arr, 64);
 ```
 
 ## bool IsOpen()
