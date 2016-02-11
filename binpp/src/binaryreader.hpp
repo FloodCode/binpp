@@ -18,21 +18,12 @@ namespace binpp
 		template<typename T>
 		void Read(size_t offset, T *outVar)
 		{
-			size_t typeSize = sizeof(T);
-			if (typeSize <= BINPP_BYTE_SIZE)
+			*outVar = 0;
+			*outVar |= this->data[offset];
+			for (size_t i = offset + 1; i < offset + sizeof(T); ++i)
 			{
-				*outVar = static_cast<T>(this->data[offset]);
-			}
-			else
-			{
-				*outVar = 0;
-				*outVar |= this->data[offset];
-				size_t parts = typeSize / BINPP_BYTE_SIZE;
-				for (size_t i = offset + 1; i < offset + parts; ++i)
-				{
-					*outVar <<= 8;
-					*outVar |= this->data[i];
-				}
+				*outVar <<= 8;
+				*outVar |= this->data[i];
 			}
 		}
 

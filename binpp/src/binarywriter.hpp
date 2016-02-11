@@ -23,38 +23,18 @@ namespace binpp
 		template<typename T>
 		void Append(T data)
 		{
-			size_t typeSize = sizeof(T);
-			if (typeSize <= BINPP_BYTE_SIZE)
+			for (size_t i = sizeof(T); i > 0; --i)
 			{
-				Append(static_cast<byte>(data));
-			}
-			else
-			{
-				size_t parts = typeSize / BINPP_BYTE_SIZE;
-
-				for (size_t i = parts; i > 0; --i)
-				{
-					Append(static_cast<byte>(data >> ((i - 1) * 8)));
-				}
+				Append(static_cast<byte>(data >> ((i - 1) * 8)));
 			}
 		}
 
 		template<typename T>
 		void Append(T *data, size_t sz)
 		{
-			if (sizeof(T) <= BINPP_BYTE_SIZE)
+			for (size_t i = 0; i < sz; ++i)
 			{
-				for (size_t i = 0; i < sz; ++i)
-				{
-					Append(static_cast<byte>(data[i]));
-				}
-			}
-			else
-			{
-				for (size_t i = 0; i < sz; ++i)
-				{
-					Append(data[i]);
-				}
+				Append(data[i]);
 			}
 		}
 
